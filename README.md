@@ -1,76 +1,93 @@
-# Autenticação com NextAuth, Prisma e Next.js 15
+# Plataforma de Ebooks por Assinatura 📚  
 
-Neste mini projeto, você irá implementar a autenticação em um hipotético SaaS de Livros de Programação. Usaremos o NextAuth para gerenciar a autenticação e o Prisma para a interação com o banco de dados, enquanto nosso frameworks será o Next.js 15. O design já está preparado, e o foco será na implementação das funcionalidades sem a necessidade de modificar muito o HTML e o CSS.
+> Uma aplicação moderna para leitura e assinatura de ebooks, oferecendo uma experiência simples, eficiente e segura.  
 
-## 🤓 Antes de começar
+## 🚀 Funcionalidades  
 
-Para este projeto, já temos o template inicial do projeto preparado no repositório. Ao fazer o fork você encontrará todos os arquivos iniciais. 
+- **Homepage:**
+  - Apresentação da plataforma com informações sobre o serviço e seus benefícios.
+  - Design responsivo e moderno.  
 
-Apesar de, na Dashboard, existir citação à assinaturas, não é necessário se preocupar com assinaturas e pagamentos nesse Mini Projeto. O foco aqui é autenticação. 
+- **Dashboard:**
+  - Listagem dos livros disponíveis na biblioteca.
+  - Sistema de busca e filtro para encontrar livros rapidamente.
+  - Leitura online diretamente na plataforma.
 
-## 🔨 Requisitos
+- **Sistema de Assinaturas:**
+  - Gerenciamento completo de assinaturas usando Stripe.
+  - Diferentes planos de assinatura, incluindo mensal e anual.
+  - Controle de status do pagamento diretamente no painel.  
 
-- **Faça a instalação e o setup do NextAuth v5 (a última versão é importante).**
-  - O único provedor que você irá usar neste Mini Projeto é o `Credentials` (login com email e senha). 
+- **Autenticação Segura:**
+  - Registro e login utilizando **NextAuth**.
+  - Suporte a recuperação de senha.
+  - Armazenamento seguro de dados com **Bcrypt**.  
 
-- **Crie e gerencie sua base de dados (sqlite, mysql ou postgres) usando o Prisma**
-  - Você precisará, pelo menos, de uma tabela de usuários
-	
-    > 👀 **Dicas:**
-    > - Consulte a documentação do NextAuth para entender como configurar o Prisma em conjunto com NextAuth.
+- **Banco de Dados e Integração:**
+  - Utilização de **Turso** e **SQLite** para um banco de dados leve e eficiente.
+  - Interações otimizadas com o banco de dados usando **Prisma**.
 
-- **Funcionalidade de registrar usuários usando a tela de cadastro**
-  - Use, na medida do possível, _server actions_.
-  - Um usuário deverá possuir _nome_, _email_ e _senha_.
-  - A senha deverá ser criptografada antes de ser salva na base de dados.
-  - A tela de cadastro não pode ser acessível a usuários logados (redirecione ao dashboard)
+---
 
-      > 👀 **Dicas:**
-      > - O NextAuth auxilia apenas no login do usuário - a implementação do cadastro de usuário deverá ser feita por você.
+## 💻 Tecnologias  
 
-- **Funcionalidade de logar usuários usando a tela de login**
-  - Use, na medida do possível, _server actions_.
-  - Ao logar, redirecione o usuário para a tela de dashboard.
-  - A tela de login não pode ser acessível a usuários logados (redirecione ao dashboard)
- 
-- **Funcionalidade de deslogar o usuário.**
+- **Next.js:** Para a criação de uma aplicação moderna e server-side rendering.
+- **TypeScript:** Para um desenvolvimento mais confiável e escalável.
+- **NextAuth:** Gerenciamento de autenticação simples e integrado.
+- **Stripe:** Sistema de pagamentos e assinaturas seguro.
+- **Turso e SQLite:** Gerenciamento de banco de dados rápido e eficiente.
+- **Prisma:** ORM para interagir com o banco de dados com facilidade.
+- **Bcrypt:** Segurança no armazenamento de senhas.  
 
-- **Navegação e renderização condicional**
-  - Na home, quando o usuário estiver logado, o botão da Navbar deverá ser `Dashboard`. Quando o usuário estiver deslogado, o botão deverá ser `Login`.
-  - Um usuário deslogado não poderá acessar a Dashboard.
-  - Um usuário logado não poderá acessar as telas de login e cadastro. 
+---
 
-## 🔨 Desafio extra para quem quer ir além
+## 🛠️ Instalação  
 
-- Implemente uma página de perfil onde o usuário poderá visualizar e editar suas informações como _nome_ e _senha_. 
+Siga as instruções abaixo para rodar o projeto localmente:  
 
-## 🎨 Design Sugerido
+```bash
+# Clone este repositório
+git clone https://github.com/seu-usuario/plataforma-ebooks.git
+cd plataforma-ebooks
+# Instale as dependências
+npm install
+# Configure as variáveis de ambiente no arquivo .env:
+# STRIPE_PUBLIC_KEY=SuaChavePublica
+# STRIPE_SECRET_KEY=SuaChaveSecreta
+# DATABASE_URL=SuaURLDoBanco
+# NEXTAUTH_SECRET=SeuSegredo
+# NEXTAUTH_URL=SuaURL
+# Execute as migrações do banco de dados
+npx prisma migrate dev
+# Inicie o servidor de desenvolvimento
+npm run dev
+# Acesse no navegador
+http://localhost:3000
+## 🖼️ Capturas de Tela  
 
-O layout está no Figma e já está implementado no projeto. Você não precisará implementá-lo. 
+**Homepage:**  
+*(Adicione uma imagem aqui mostrando a página inicial do projeto)*  
+
+**Dashboard:**  
+*(Adicione uma imagem aqui mostrando o dashboard com os ebooks)*  
+
+**Página de Assinaturas:**  
+*(Adicione uma imagem aqui mostrando o processo de assinatura)*  
+
+---
+
+## 🚧 Roadmap  
+
+Funcionalidades futuras que serão implementadas:  
+
+- Sistema de recomendação de livros com base no histórico do usuário.  
+- Feedback de usuários nos livros (comentários e avaliações).  
+- Suporte a notificações por email para lembretes de assinatura.  
+- Adicionar integração com IA para sugestões personalizadas.  
+## 🎨 Design do Projeto
+
+O layout está no Figma e já está implementado no projeto. 
 
 ### Figma
 
 🔗 [Link do design](https://www.figma.com/community/file/1431066927390390144/mini-projeto-saas-autenticacao-com-nextauth-prisma-e-next-js-15)
-
-## 👉🏽 Sobre esse mini-projeto
-
-### O que você irá praticar:
-
-#### Next.js
-
-- Conhecimentos sobre a configuração de páginas e rotas dinâmicas.
-
-#### NextAuth
-
-- Aprender sobre autenticação em aplicações Next.js.
-- Integração do NextAuth com Prisma e base de dados. 
-
-#### Prisma
-
-- Gerenciar banco de dados de forma eficiente e intuitiva.
-- Criação de modelos e migrações com Prisma.
-
-
-### Pré requisitos
-
-- Conhecimentos em JavaScript, React e NextJs.
