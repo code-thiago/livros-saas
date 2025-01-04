@@ -41,10 +41,25 @@
 
 ---
 
-## 🎨 Design do Projeto
+## 🖼️ Capturas de Tela  
 
-O layout está no Figma e já está implementado no projeto. 
+**Homepage:**  
+*(Adicione uma imagem aqui mostrando a página inicial do projeto)*  
 
-### Figma
+**Dashboard:**  
+*(Adicione uma imagem aqui mostrando o dashboard com os ebooks)*  
 
-🔗 [Link do design](https://www.figma.com/community/file/1431066927390390144/mini-projeto-saas-autenticacao-com-nextauth-prisma-e-next-js-15)
+**Página de Assinaturas:**  
+*(Adicione uma imagem aqui mostrando o processo de assinatura)*  
+
+---
+
+## 🚧 Roadmap  
+
+Funcionalidades futuras que serão implementadas:  
+
+- Sistema de recomendação de livros com base no histórico do usuário.  
+- Feedback de usuários nos livros (comentários e avaliações).  
+- Suporte a notificações por email para lembretes de assinatura.  
+- Adicionar integração com IA para sugestões personalizadas.  
+
