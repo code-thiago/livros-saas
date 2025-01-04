@@ -44,13 +44,13 @@
 ## 🖼️ Capturas de Tela  
 
 **Homepage:**  
-*(Adicione uma imagem aqui mostrando a página inicial do projeto)*  
+<img src="/" alt="">
 
 **Dashboard:**  
-*(Adicione uma imagem aqui mostrando o dashboard com os ebooks)*  
+<img src="/" alt="">  
 
 **Página de Assinaturas:**  
-*(Adicione uma imagem aqui mostrando o processo de assinatura)*  
+<img src="/" alt="">  
 
 ---
 
