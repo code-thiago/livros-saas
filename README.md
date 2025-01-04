@@ -41,19 +41,6 @@
 
 ---
 
-## 🖼️ Capturas de Tela  
-
-**Homepage:**  
-<img src="/" alt="">
-
-**Dashboard:**  
-<img src="/" alt="">  
-
-**Página de Assinaturas:**  
-<img src="/" alt="">  
-
----
-
 ## 🚧 Roadmap  
 
 Funcionalidades futuras que serão implementadas:  
