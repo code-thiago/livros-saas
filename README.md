@@ -5,7 +5,7 @@
 
 ## Link do Projeto
 
-[Site do MicroSaas] (https://livros-two.vercel.app/)
+Site do MicroSaas: https://livros-two.vercel.app/
 
 <div align="center">
  <div>
