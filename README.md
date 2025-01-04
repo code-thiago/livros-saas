@@ -41,53 +41,6 @@
 
 ---
 
-## 🛠️ Instalação  
-
-Siga as instruções abaixo para rodar o projeto localmente:  
-
-```bash
-# Clone este repositório
-git clone https://github.com/seu-usuario/plataforma-ebooks.git
-cd plataforma-ebooks
-# Instale as dependências
-npm install
-# Configure as variáveis de ambiente no arquivo .env:
-# STRIPE_PUBLIC_KEY=SuaChavePublica
-# STRIPE_SECRET_KEY=SuaChaveSecreta
-# DATABASE_URL=SuaURLDoBanco
-# NEXTAUTH_SECRET=SeuSegredo
-# NEXTAUTH_URL=SuaURL
-# Execute as migrações do banco de dados
-npx prisma migrate dev
-# Inicie o servidor de desenvolvimento
-npm run dev
-# Acesse no navegador
-http://localhost:3000
-## 🖼️ Capturas de Tela  
-
-**Homepage:**  
-*(Adicione uma imagem aqui mostrando a página inicial do projeto)*  
-
-**Dashboard:**  
-*(Adicione uma imagem aqui mostrando o dashboard com os ebooks)*  
-
-**Página de Assinaturas:**  
-*(Adicione uma imagem aqui mostrando o processo de assinatura)*  
-
----
-
-## 🚧 Roadmap  
-
-Funcionalidades futuras que serão implementadas:  
-
-- Sistema de recomendação de livros com base no histórico do usuário.  
-- Feedback de usuários nos livros (comentários e avaliações).  
-- Suporte a notificações por email para lembretes de assinatura.  
-- Adicionar integração com IA para sugestões personalizadas.  
-## 🎨 Design do Projeto
-
-O layout está no Figma e já está implementado no projeto. 
-
 ### Figma
 
 🔗 [Link do design](https://www.figma.com/community/file/1431066927390390144/mini-projeto-saas-autenticacao-com-nextauth-prisma-e-next-js-15)
