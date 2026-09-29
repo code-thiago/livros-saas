@@ -1,64 +1,115 @@
-# Plataforma de Ebooks por Assinatura 📚  
+livros-saas
+Subscription platform & landing page for digital books. Edge-ready, authenticated, type-safe.
 
-> Uma aplicação moderna para leitura e assinatura de ebooks, oferecendo uma experiência simples, eficiente e segura.
+TypeScript
+import { prisma } from "@/src/lib/prisma";
+import { hashPassword } from "@/src/lib/auth";
 
+// Provisioning a subscriber account with encrypted credentials
+const user = await prisma.user.create({
+  data: {
+    email: "reader@example.com",
+    passwordHash: await hashPassword("securePassword123"),
+    role: "SUBSCRIBER",
+    subscription: {
+      create: {
+        status: "ACTIVE",
+        plan: "MONTHLY_ACCESS",
+      },
+    },
+  },
+  include: { subscription: true },
+});
+Overview
+livros-saas is a web platform and landing page designed for selling, distributing, and managing access to digital books via recurring subscriptions:
 
-## Link do Projeto
+Book Showcase & Sales Landing: High-conversion storefront with dynamic catalog presentation, preview chapters, and pricing tiers.
 
-Site do MicroSaas: https://livros-two.vercel.app/
+Subscriber Authentication: Edge-compatible session management and credential authentication backed by NextAuth v5 and bcrypt-ts.
 
-<div align="center">
- <div>
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-  </div>
-</div>
+Database Engine via LibSQL: High-performance database operations over HTTP/WebSockets with zero cold-start latency using Turso and Prisma's native adapter.
 
-## 🚀 Funcionalidades  
+Accessible UI Primitives: Completely styled, keyboard-navigable components powered by Radix UI, Tailwind CSS, and class-variance-authority.
 
-- **Homepage:**
-  - Apresentação da plataforma com informações sobre o serviço e seus benefícios.
-  - Design responsivo e moderno.  
+Stack
+Framework: Next.js 15 (App Router, Turbopack, Server Actions)
 
-- **Dashboard:**
-  - Listagem dos livros disponíveis na biblioteca.
-  - Sistema de busca e filtro para encontrar livros rapidamente.
-  - Leitura online diretamente na plataforma.
+Language: TypeScript 5
 
-- **Sistema de Assinaturas:**
-  - Gerenciamento completo de assinaturas usando Stripe.
-  - Diferentes planos de assinatura, incluindo mensal e anual.
-  - Controle de status do pagamento diretamente no painel.  
+Database & ORM: LibSQL (Turso / SQLite) with Prisma 6 (@prisma/adapter-libsql)
 
-- **Autenticação Segura:**
-  - Registro e login utilizando **NextAuth**.
-  - Suporte a recuperação de senha.
-  - Armazenamento seguro de dados com **Bcrypt**.  
+Authentication: NextAuth v5 (Beta 25) + bcrypt-ts
 
-- **Banco de Dados e Integração:**
-  - Utilização de **Turso** e **SQLite** para um banco de dados leve e eficiente.
-  - Interações otimizadas com o banco de dados usando **Prisma**.
+Styling: Tailwind CSS + tailwindcss-animate
 
----
+UI Components: Radix UI primitives (@radix-ui/react-dropdown-menu, @radix-ui/react-slot, @radix-ui/react-label)
 
-## 💻 Tecnologias  
+Icons: Lucide React
 
-- **Next.js:** Para a criação de uma aplicação moderna e server-side rendering.
-- **TypeScript:** Para um desenvolvimento mais confiável e escalável.
-- **NextAuth:** Gerenciamento de autenticação simples e integrado.
-- **Stripe:** Sistema de pagamentos e assinaturas seguro.
-- **Turso e SQLite:** Gerenciamento de banco de dados rápido e eficiente.
-- **Prisma:** ORM para interagir com o banco de dados com facilidade.
-- **Bcrypt:** Segurança no armazenamento de senhas.  
+Why This Project Exists
+Most SaaS boilerplates for digital content either bundle heavy relational database drivers that choke in serverless environments, or rely on client-side state without resilient access control:
 
----
+Serverless-First LibSQL Driver: Standard TCP connection pools break down or incur high latency during serverless auto-scaling. By utilizing @libsql/client alongside @prisma/adapter-libsql, queries travel over lightweight HTTP requests without pooling bottlenecks.
 
-## 🚧 Roadmap  
+Zero-Binary Password Hashing: Conventional bcrypt depends on node-gyp and native C++ binaries, which frequently cause failures in Edge and serverless functions. bcrypt-ts provides pure-JavaScript/TypeScript hashing with standard bcrypt compatibility.
 
-Funcionalidades futuras que serão implementadas:  
+Polymorphic UI Composition: Using class-variance-authority (CVA) alongside Radix UI primitives ensures UI components maintain strict styling variants without CSS specificity collisions or layout regressions.
 
-- Sistema de recomendação de livros com base no histórico do usuário.  
-- Feedback de usuários nos livros (comentários e avaliações).  
-- Suporte a notificações por email para lembretes de assinatura.  
-- Adicionar integração com IA para sugestões personalizadas.  
+Automated Client Generation: With prisma generate mapped directly to postinstall and build cycles, deployment pipelines always synchronize typed client definitions with schema changes without manual intervention.
 
+Getting Started Locally
+Prerequisites
+Node.js 18+ or 20+
+
+A Turso database instance or a local SQLite file
+
+Environment Variables
+Create a .env file in the project root:
+
+Snippet de código
+DATABASE_URL="file:./dev.db"
+# TURSO_AUTH_TOKEN="your-turso-token-if-using-remote-turso"
+
+AUTH_SECRET="your-32-character-random-secret"
+NEXTAUTH_URL="http://localhost:3000"
+Installation and Execution
+Install dependencies:
+
+Bash
+npm install
+Synchronize Prisma schema with the database:
+
+Bash
+npx prisma db push
+Start the local development server with Turbopack:
+
+Bash
+npm run dev
+Open http://localhost:3000 in your browser.
+
+Project Structure
+Plaintext
+src/
+├── app/          # Next.js App Router (public landing, auth routes, and reading portal)
+├── components/   # Radix UI primitives, design tokens, and modular marketing sections
+├── lib/          # Prisma client instantiation, LibSQL adapter, and auth helpers
+├── styles/       # Tailwind CSS configurations and base animations
+└── prisma/       # Prisma schema, migrations, and database seeders
+Technical Decisions
+Adapter-Driven ORM: Decoupling the Prisma query engine from native database binaries via @prisma/adapter-libsql allows the entire application runtime to remain fully portable across Node.js, Vercel, and Cloudflare.
+
+Turbopack Execution Pipeline: Local development runs strictly through next dev --turbopack, accelerating fast-refresh cycles on React 19 builds.
+
+Separation of Concerns in Auth: Authentication logic delegates credentials validation to standalone server actions, keeping the public landing page lightweight and statically cacheable.
+
+Scripts
+npm run dev — Starts the local dev server using Turbopack.
+
+npm run build — Generates Prisma Client and creates the production bundle.
+
+npm run start — Starts the production Next.js server.
+
+npm run lint — Runs ESLint code quality checks.
+
+License
+To be determined. Inquire with the author for usage or redistribution permissions.
